@@ -3,6 +3,12 @@ generator id by redis lua
 
 基于redis+lua的分布式ID生成器。
 
+要了解redis的EVAL，EVALSHA命令：
+
+http://redis.io/commands/eval
+
+http://redis.io/commands/evalsha
+
 利用redis的lua脚本执行功能，在每个节点上通过lua脚本生成唯一ID。
 
 Redis是单线程的，所以也可以用生成全局唯一的ID。可以用Redis的原子操作 INCR和INCRBY来实现。
