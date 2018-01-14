@@ -8,7 +8,7 @@ generator id by redis lua
 
     year     day			seq
     
-    18 		 015 		0000000001
+    18 	    015            0000000001
     
     前两位年份  该年第几天     自增序列
 
