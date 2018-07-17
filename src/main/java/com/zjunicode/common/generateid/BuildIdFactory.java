@@ -1,8 +1,8 @@
-package com.zjunicode.common;
+package com.zjunicode.common.generateid;
 
 import java.io.IOException;
 
-import com.zjunicode.common.IdGenerator.LoadIdGeneratorConfig;
+import com.zjunicode.common.generateid.IdGenerator.LoadIdGeneratorConfig;
 
 /**
 * @ClassName: BuildIdFactory

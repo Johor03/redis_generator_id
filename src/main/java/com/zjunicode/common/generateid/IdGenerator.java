@@ -1,4 +1,4 @@
-package com.zjunicode.common;
+package com.zjunicode.common.generateid;
 
 import java.io.BufferedReader;
 import java.io.IOException;
