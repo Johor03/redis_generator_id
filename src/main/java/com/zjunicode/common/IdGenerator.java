@@ -1,4 +1,4 @@
-package com.beefly.common;
+package com.zjunicode.common;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,8 +21,7 @@ import redis.clients.jedis.exceptions.JedisException;
 /**
 * @ClassName: IdGenerator
 * @Description: 全局ID生产配置加载
-* @author eonh
-* @date 2017年12月27日 上午11:00:58
+* @author guowei
 *
 */
 public final class IdGenerator {

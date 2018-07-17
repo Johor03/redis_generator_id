@@ -37,4 +37,4 @@ else
 	sequence = tonumber(redis.call('INCRBY', prefix..tag..'_seq', 3)) 
 end 
 
-return tonumber(string.format('%02d', redis.call('GET',prefix..tag..'_year'))..string.format('%03d', redis.call('GET',prefix..tag..'_day'))..string.format('%09d', sequence)) 
+return tonumber(string.format('%02d', redis.call('GET',prefix..tag..'_year'))..string.format('%03d', redis.call('GET',prefix..tag..'_day'))..string.format('%012d', sequence)) 
