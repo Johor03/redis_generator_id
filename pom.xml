@@ -9,14 +9,17 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.25</slf4j.version>
-
 	</properties>
-
+	<distributionManagement>
+		<repository>
+			<id>nexus-snapshots</id>
+			<name>Nexus snapshots</name>
+			<url>http://10.0.20.25:8888/repository/maven-snapshots/</url>
+		</repository>
+	</distributionManagement>
 	<dependencies>
 
 		<dependency>
@@ -40,4 +43,18 @@
 		</dependency>
 
 	</dependencies>
+	<build>
+    	<plugins>
+    		<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+    	</plugins>
+    </build>
 </project>
