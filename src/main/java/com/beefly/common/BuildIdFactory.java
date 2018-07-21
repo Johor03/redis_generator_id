@@ -14,25 +14,32 @@ import com.beefly.common.IdGenerator.LoadIdGeneratorConfig;
 public final class BuildIdFactory {
     
     /**
-     * 订单表序列
+     * 序列
      */
     private final static String TAB_ORDER = "order";
 
-    private static IdGenerator idGenerator;
-    private static BuildIdFactory instance;
+    private static volatile IdGenerator idGenerator;
+    private static volatile BuildIdFactory instance;
     
     private BuildIdFactory() {
     }
     
     public static BuildIdFactory getInstance() {
         if(idGenerator == null) {
-            try {
-                idGenerator = LoadIdGeneratorConfig.loadConfig.buildIdGenerator();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        	synchronized (LoadIdGeneratorConfig.class) {
+        		try {
+        			idGenerator = LoadIdGeneratorConfig.loadConfig.buildIdGenerator();
+        		} catch (IOException e) {
+        			e.printStackTrace();
+        		}
+			}
         }
-        return instance == null ? new BuildIdFactory() : instance;
+        if(instance == null ) {
+        	synchronized (BuildIdFactory.class) {
+        		instance = new BuildIdFactory();
+			}
+        }
+        return instance;
     }
     
     public Long buildFactoryOrderId() {
