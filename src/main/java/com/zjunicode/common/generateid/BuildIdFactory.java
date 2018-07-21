@@ -15,7 +15,7 @@ public final class BuildIdFactory {
     /**
      * 序列
      */
-    private final static String TAB_ORDER = "user";
+    private final static String TAB_ORDER = "order";
 
     private static volatile IdGenerator idGenerator;
     private static volatile BuildIdFactory instance;

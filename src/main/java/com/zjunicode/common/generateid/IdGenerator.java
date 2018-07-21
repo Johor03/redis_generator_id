@@ -99,7 +99,7 @@ public final class IdGenerator {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            Long result = (Long)jedis.evalsha(luaSha, 3, tab, year, day);
+            Long result = Long.valueOf(jedis.evalsha(luaSha, 3, tab, year, day).toString());
             return result;
         } catch (JedisException e) {
             logger.error("generate id error!", e);
