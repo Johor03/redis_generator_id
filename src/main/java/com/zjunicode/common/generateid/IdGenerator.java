@@ -63,7 +63,7 @@ public final class IdGenerator {
             config.setTestOnReturn(false);
             config.setLifo(true);
             config.setMinIdle(30);
-            jedisPoolList.add(Pair.of(new JedisPool(config, host, port, 1000, pass), luaSha));
+            jedisPoolList.add(Pair.of(StringUtils.isEmpty(pass) ? new JedisPool(config, host, port, 1000) : new JedisPool(config, host, port, 1000, pass), luaSha));
             return this;
         }
         
@@ -123,7 +123,7 @@ public final class IdGenerator {
                 for (int i = 1; i <= 3; i++) {
                     String host = pro.getProperty("redis_cluster" + i + "_host");
                     String pass = pro.getProperty("redis_cluster" + i + "_pass");
-                    if(StringUtils.isEmpty(host) || StringUtils.isEmpty(pass)) {
+                    if(StringUtils.isEmpty(host)) {
                         continue;
                     }
                     scriptConf.add(new RedisScriptConfig(host, Integer.valueOf(pro.getProperty("redis_cluster" + i + "_port", "6379")), pass));
@@ -148,7 +148,9 @@ public final class IdGenerator {
             int index = 1;
             for (RedisScriptConfig conf : scriptConf) {
                 Jedis jedis = new Jedis(conf.getHost(), conf.getPort());
-                jedis.auth(conf.getPass());
+                if(!StringUtils.isEmpty(conf.getPass())) {
+                	jedis.auth(conf.getPass());
+                }
                 InputStream is = LoadIdGeneratorConfig.class.getResourceAsStream("/script/redis-script-node" + index++ + ".lua");
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String readLine = null;
