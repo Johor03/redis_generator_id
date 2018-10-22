@@ -17,6 +17,8 @@ public final class BuildIdFactory {
      */
     private final static String TAB_ORDER = "order";
 
+    private final static String TAB_AGR = "agr";
+
     private final static String TAB_MERCHANT = "merchant";
 
     private final static String TAB_USER = "user";
@@ -47,6 +49,10 @@ public final class BuildIdFactory {
     
     public Long buildFactoryOrderId() {
         return idGenerator.next(TAB_ORDER);
+    }
+
+    public Long buildFactoryAgrrId() {
+        return idGenerator.next(TAB_AGR);
     }
     public Long buildFactoryMerchantId() {
         return idGenerator.next(TAB_MERCHANT);
