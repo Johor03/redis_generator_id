@@ -7,21 +7,10 @@ import com.zjunicode.common.generateid.IdGenerator.LoadIdGeneratorConfig;
 /**
 * @ClassName: BuildIdFactory
 * @Description: 全局ID生产工厂
-* @author guowei
+* @author stone
 *
 */
 public final class BuildIdFactory {
-    
-    /**
-     * 序列
-     */
-    private final static String TAB_ORDER = "order";
-
-    private final static String TAB_AGR = "agr";
-
-    private final static String TAB_MERCHANT = "merchant";
-
-    private final static String TAB_USER = "user";
 
     private static volatile IdGenerator idGenerator;
     private static volatile BuildIdFactory instance;
@@ -46,19 +35,25 @@ public final class BuildIdFactory {
         }
         return instance;
     }
-    
-    public Long buildFactoryOrderId() {
-        return idGenerator.next(TAB_ORDER);
+
+    /**
+     * 生成17位序列ID,返回Long型 12位长度序列
+     * @param applicationName 应用服务名称,如:order_server
+     * @param tabName 序列表名,如:t_order
+     * @return
+     */
+    public Long buildFactoryGeneratorId17(final String applicationName,final String tabName) {
+        return idGenerator.next(applicationName+":"+tabName);
     }
 
-    public Long buildFactoryAgrrId() {
-        return idGenerator.next(TAB_AGR);
-    }
-    public Long buildFactoryMerchantId() {
-        return idGenerator.next(TAB_MERCHANT);
-    }
-    public Long buildFactoryUserId() {
-        return idGenerator.next(TAB_USER);
+    /**
+     * 生成12为序列ID,返回Long型 17位长度序列
+     * @param applicationName 应用服务名称,如:order_server
+     * @param tabName 序列表名,如:t_order
+     * @return
+     */
+    public Long buildGeneratorId12(final String applicationName,final String tabName) {
+        return idGenerator.nextGenerator12(applicationName+":"+tabName);
     }
     
 }
