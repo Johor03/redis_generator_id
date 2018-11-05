@@ -81,7 +81,7 @@ public final class IdGenerator {
     }
 
     public long nextGenerator(String tab,int length) {
-        long initStart = Double.valueOf(Math.pow(10,7)).longValue();;
+        long initStart = 10000000L;
         if (length > 8 && length <= 19) {
             initStart = Double.valueOf(Math.pow(10,length - 1)).longValue();
         }
