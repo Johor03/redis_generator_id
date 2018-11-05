@@ -7,8 +7,8 @@ public class Test {
     public static void main(String[] args) {
         long current = System.currentTimeMillis();
         Set<Long> ids = new HashSet<Long>();
-        for (int i = 0; i < 2000; i++) {
-            Long id = BuildIdFactory.getInstance().buildGeneratorId12("unicode_pay","order");
+        for (int i = 0; i < 20; i++) {
+            Long id = BuildIdFactory.getInstance().buildGeneratorIdByLength("unicode_pay","log",15);
             ids.add(id);
             System.out.println(id);
         }

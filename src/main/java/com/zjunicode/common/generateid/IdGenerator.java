@@ -80,11 +80,15 @@ public final class IdGenerator {
         }
     }
 
-    public long nextGenerator12(String tab) {
+    public long nextGenerator(String tab,int length) {
+        long initStart = Double.valueOf(Math.pow(10,7)).longValue();;
+        if (length > 8 && length <= 19) {
+            initStart = Double.valueOf(Math.pow(10,length - 1)).longValue();
+        }
         for (int i = 0; i < retryTimes; ++i) {
             Long id = innerNextIncr(tab);
             if (id != null) {
-                return 100000000000L + id;
+                return initStart + id;
             }
         }
         throw new RuntimeException("Can not generate id!");
